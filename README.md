@@ -46,10 +46,10 @@ You have to set some environment variables:
 If you run them under proxy, you also need to set `http_proxy` and `https_proxy`.
 
 ```
-$ docker run -it --previleged -v /path/to/outdir:/share -e BZ2_ARCHIVE=<Source archive URL> -e RELEASE=<Release version> heapstats/builder:prep
-$ docker run -it --previleged -v /path/to/outdir:/share -e RELEASE=<Release version> -e heapstats/builder:centos6
-$ docker run -it --previleged -v /path/to/outdir:/share -e RELEASE=<Release version> -e heapstats/builder:centos7
-$ docker run -it --previleged -v /path/to/outdir:/share -e RELEASE=<Release version> -e heapstats/builder:fedora
+$ docker run -it --privileged -v /path/to/outdir:/share -e BZ2_ARCHIVE=<Source archive URL> -e RELEASE=<Release version> heapstats/builder:prep
+$ docker run -it --privileged -v /path/to/outdir:/share -e RELEASE=<Release version> -e heapstats/builder:centos6
+$ docker run -it --privileged -v /path/to/outdir:/share -e RELEASE=<Release version> -e heapstats/builder:centos7
+$ docker run -it --privileged -v /path/to/outdir:/share -e RELEASE=<Release version> -e heapstats/builder:fedora
 ```
 
 You can get binaries from `/path/to/outdir`.
