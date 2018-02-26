@@ -42,16 +42,14 @@ You have to set some environment variables:
     * This value is only needed in `heapstats/builder:prep` container.
 * `RELEASE`
     * Release version (e.g. 2.1.0)
-* `MAJOR`
-    * Major release number (e.g. 2.1)
 
 If you run them under proxy, you also need to set `http_proxy` and `https_proxy`.
 
 ```
-$ docker run -it --previleged -v /path/to/outdir:/share -e BZ2_ARCHIVE=<Source archive URL> -e RELEASE=<Release version> -e MAJOR=<Major release number> heapstats/builder:prep
-$ docker run -it --previleged -v /path/to/outdir:/share -e RELEASE=<Release version> -e MAJOR=<Major release number> heapstats/builder:centos6
-$ docker run -it --previleged -v /path/to/outdir:/share -e RELEASE=<Release version> -e MAJOR=<Major release number> heapstats/builder:centos7
-$ docker run -it --previleged -v /path/to/outdir:/share -e RELEASE=<Release version> -e MAJOR=<Major release number> heapstats/builder:fedora
+$ docker run -it --previleged -v /path/to/outdir:/share -e BZ2_ARCHIVE=<Source archive URL> -e RELEASE=<Release version> heapstats/builder:prep
+$ docker run -it --previleged -v /path/to/outdir:/share -e RELEASE=<Release version> -e heapstats/builder:centos6
+$ docker run -it --previleged -v /path/to/outdir:/share -e RELEASE=<Release version> -e heapstats/builder:centos7
+$ docker run -it --previleged -v /path/to/outdir:/share -e RELEASE=<Release version> -e heapstats/builder:fedora
 ```
 
 You can get binaries from `/path/to/outdir`.

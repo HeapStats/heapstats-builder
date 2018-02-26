@@ -1,5 +1,6 @@
 #!/bin/sh
 
+MAJOR=`echo $RELEASE | sed -e 's/^\([0-9]\+\.[0-9]\+\)\.[0-9]\+$/\1/'`
 RELEASE_DIR=heapstats-$RELEASE
 
 wget $BZ2_ARCHIVE
