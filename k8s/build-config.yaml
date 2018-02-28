@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  BZ2_ARCHIVE: http://icedtea.classpath.org/hg/release/heapstats-2.0/archive/b4e9b1f5a2c7.tar.bz2
+  RELEASE: 2.0.5
+kind: ConfigMap
+metadata:
+  name: heapstats-builder-env

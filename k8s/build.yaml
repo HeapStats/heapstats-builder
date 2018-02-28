@@ -1,0 +1,52 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: heapstats-release-builder
+spec:
+  template:
+    metadata:
+      name: heapstats-builder-template
+    spec:
+      restartPolicy: Never
+      initContainers:
+      - name: preparation
+        image: heapstats/builder:prep
+        envFrom:
+        - configMapRef:
+            name: heapstats-builder-env
+        volumeMounts:
+        - name: share
+          mountPath: /share
+      volumes:
+      - name: share
+        hostPath:
+          path: /tmp/share
+      containers:
+      - name: fedora
+        image: heapstats/builder:fedora
+        envFrom:
+        - configMapRef:
+            name: heapstats-builder-env
+        volumeMounts:
+        - name: share
+          mountPath: /share
+      - name: centos7
+        image: heapstats/builder:centos7
+        envFrom:
+        - configMapRef:
+            name: heapstats-builder-env
+        volumeMounts:
+        - name: share
+          mountPath: /share
+      - name: centos6
+        image: heapstats/builder:centos6
+        envFrom:
+        - configMapRef:
+            name: heapstats-builder-env
+        volumeMounts:
+        - name: share
+          mountPath: /share
+      volumes:
+      - name: share
+        hostPath:
+          path: /tmp/share

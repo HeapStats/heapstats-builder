@@ -1,5 +1,7 @@
 # HeapStats Builder
 
+**If you want to use Kubernetes as build bot, please see [here](k8s/)**
+
 The containers in this repository provides build infrastructure for HeapStats.
 
 * Preparation
