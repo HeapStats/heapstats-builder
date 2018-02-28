@@ -37,16 +37,31 @@ $ docker pull heapstats/bulider:fedora
 
 You have to set some environment variables:
 
+* `RELEASE`
+    * Release version (e.g. 2.1.0)
 * `BZ2_ARCHIVE`
     * Source archive on [IcedTea Mercurial repository](http://icedtea.wildebeest.org/hg/). You can get it from `bz2` link on left menu bar on this site.
     * This value is only needed in `heapstats/builder:prep` container.
-* `RELEASE`
-    * Release version (e.g. 2.1.0)
+    * If you do not set this value, `heapstats/builder:prep` container will download BZ2 release archive from [IcedTea release repository](http://icedtea.wildebeest.org/hg/release/)
 
 If you run them under proxy, you also need to set `http_proxy` and `https_proxy`.
 
+## Run prep container
+
+### Release version only
+
+```
+$ docker run -it --rm --privileged -v /path/to/outdir:/share -e RELEASE=<Release version> heapstats/builder:prep
+```
+
+### With `BZ2_ARCHIVE`
 ```
 $ docker run -it --rm --privileged -v /path/to/outdir:/share -e BZ2_ARCHIVE=<Source archive URL> -e RELEASE=<Release version> heapstats/builder:prep
+```
+
+## Run rpmbuild for each OSes
+
+```
 $ docker run -it --rm --privileged -v /path/to/outdir:/share -e RELEASE=<Release version> heapstats/builder:centos6
 $ docker run -it --rm --privileged -v /path/to/outdir:/share -e RELEASE=<Release version> heapstats/builder:centos7
 $ docker run -it --rm --privileged -v /path/to/outdir:/share -e RELEASE=<Release version> heapstats/builder:fedora
