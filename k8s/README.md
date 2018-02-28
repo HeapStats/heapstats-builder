@@ -5,7 +5,7 @@ I've tested the job on [Minikube](https://github.com/kubernetes/minikube).
 
 ## Configure environment variables
 
-You need to configure environment variables in [build-config.yaml](build_config.yaml).
+You need to configure environment variables in [build-config.yaml](build-config.yaml).
 
 ## Configure the volume for output
 
