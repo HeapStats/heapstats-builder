@@ -19,8 +19,8 @@ spec:
           mountPath: /share
       volumes:
       - name: share
-        hostPath:
-          path: /tmp/share
+        persistentVolumeClaim:
+          claimName: heapstats-pv-claim
       containers:
       - name: fedora
         image: heapstats/builder:fedora
@@ -48,5 +48,5 @@ spec:
           mountPath: /share
       volumes:
       - name: share
-        hostPath:
-          path: /tmp/share
+        persistentVolumeClaim:
+          claimName: heapstats-pv-claim

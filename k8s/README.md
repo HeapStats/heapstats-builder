@@ -9,12 +9,13 @@ You need to configure environment variables in [build-config.yaml](build-config.
 
 ## Configure the volume for output
 
-[build.yaml](build.yaml) is configured to use `/tmp/share` to output binaries by default. However `hostPath` is only used in single Kuernetes node.  
-So you need to change to other [Persistent Volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) if you want to run the job on Kubernetes cluster.:w
+This build bot depends on persistent volume claim in [pv-claim.yaml](pv-claim.yaml). So you need to assign PV which has `heapstats` in `storageClassName`.  
+This build bot has [host-pv.yaml](host-pv.yaml). It defines persistent volume for `/tmp/share` in the node. If you want to use it, please run `kubectl create -f host-pv.yaml`.
 
 ## Build HeapStats binaries on Kubernetes
 
 ```
+$ kubectl create -f pv-claim.yaml
 $ kubectl create -f build-config.yaml
 $ kubectl create -f build.yaml
 ```
