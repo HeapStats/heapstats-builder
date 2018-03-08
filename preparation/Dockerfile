@@ -1,13 +1,9 @@
-FROM fedora:latest
+FROM maven:3.5.2-jdk-8-slim
 LABEL maintainer "Yasumasa Suenaga <yasuenag@gmail.com>"
 
-RUN dnf upgrade -y \
-  && dnf install -y gcc-c++ java-1.8.0-openjdk-devel \
-                    java-1.8.0-openjdk-openjfx \
-                    java-1.8.0-openjdk-openjfx-devel openjfx-devel maven ant \
-                    binutils-devel tbb-devel autoconf automake wget pcre-devel \
-                    net-snmp-devel bzip2
-
+RUN apt-get update && apt-get upgrade -y \
+  && apt-get install -y openjfx g++ ant binutils-dev libiberty-dev \
+                        libsnmp-dev make
 ADD build.sh .
 
 ENTRYPOINT ["./build.sh"]

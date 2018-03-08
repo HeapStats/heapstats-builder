@@ -7,7 +7,7 @@ if [ -z "$BZ2_ARCHIVE" ]; then
   BZ2_ARCHIVE=https://icedtea.classpath.org/hg/release/heapstats-$MAJOR/archive/$RELEASE.tar.bz2
 fi
 
-wget $BZ2_ARCHIVE
+curl -LO $BZ2_ARCHIVE
 tar xvf *.bz2
 mv -f heapstats* heapstats-$MAJOR
 tar cvfz $RELEASE_DIR.tar.gz heapstats-$MAJOR
