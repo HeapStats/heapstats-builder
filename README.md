@@ -132,3 +132,12 @@ You can get binaries from `/path/to/outdir`.
         └── heapstats-2.1.0.tar.gz
 ```
 
+# Experimental build environment
+
+## Raspbian
+
+* [experimental/raspbian](experimental/raspbian)
+* Run `raspbian-setup.sh`
+* Download and mount the latest Raspbian on current directory
+* Build HeapStats Agent for ARM32
+* YOU MUST INSTALL `qemu-user-static` on your host
