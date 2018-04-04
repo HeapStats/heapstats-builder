@@ -138,6 +138,14 @@ You can get binaries from `/path/to/outdir`.
 
 * [experimental/raspbian](experimental/raspbian)
 * Run `raspbian-setup.sh`
-* Download and mount the latest Raspbian on current directory
-* Build HeapStats Agent for ARM32
+    * Download and mount the latest Raspbian on current directory
+    * Build HeapStats Agent for ARM32 from GitHub repo
 * YOU MUST INSTALL `qemu-user-static` on your host
+
+## Ubuntu
+
+* [experimental/ubuntun](experimental/ubuntu)
+* Run `docker build . -t heapstats-builder:ubuntu` to build image
+* Run `docker run -it --rm heapstats-builder:ubuntu` to build HeapStats
+    * Build HeapStats Agent and Analyzer for AMD64 from GitHub repo
+
