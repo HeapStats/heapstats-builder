@@ -13,12 +13,16 @@ START_SECTOR=`fdisk -l $IMAGE | grep img2 | tr -s '[[:space:]]' ',' | cut -d',' 
 OFFSET=`expr $SECTOR_SIZE \* $START_SECTOR`
 
 # Mount
-mkdir rpi_sysroot
-mount -o offset=$OFFSET $IMAGE rpi_sysroot
-cp build.sh rpi_sysroot/root/build.sh
+SYSROOT=rpi_sysroot
+mkdir $SYSROOT
+mount -o offset=$OFFSET $IMAGE $SYSROOT
+cp build.sh $SYSROOT/root/build.sh
+
+# Clone HeapStats repo from GitHub
+git clone https://github.com/HeapStats/heapstats.git $SYSROOT/root/heapstats
 
 # Run builder
-ARG='-D rpi_sysroot'
+ARG="-D $SYSROOT"
 if [ -n "$http_proxy" ]; then
   ARG="$ARG -E http_proxy=$http_proxy"
 fi

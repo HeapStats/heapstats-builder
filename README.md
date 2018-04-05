@@ -144,7 +144,7 @@ You can get binaries from `/path/to/outdir`.
 
 ## Ubuntu
 
-* [experimental/ubuntun](experimental/ubuntu)
+* [experimental/ubuntu](experimental/ubuntu)
 * Run `docker build . -t heapstats-builder:ubuntu` to build image
 * Run `docker run -it --rm heapstats-builder:ubuntu` to build HeapStats
     * Build HeapStats Agent and Analyzer for AMD64 from GitHub repo
