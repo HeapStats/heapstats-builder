@@ -1,4 +1,4 @@
-FROM fedora:latest
+FROM fedora:30
 LABEL maintainer "Yasumasa Suenaga <yasuenag@gmail.com>"
 
 RUN dnf upgrade -y \
@@ -6,7 +6,7 @@ RUN dnf upgrade -y \
                     java-1.8.0-openjdk-openjfx \
                     java-1.8.0-openjdk-openjfx-devel openjfx-devel maven ant \
                     binutils-devel tbb-devel autoconf automake rpm-build \
-                    net-snmp-devel pcre-devel
+                    net-snmp-devel pcre-devel make
 
 ADD build.sh .
 
