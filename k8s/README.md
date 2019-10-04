@@ -1,7 +1,7 @@
 # Build bot on Kubernetes
 
 You can use Kubernete Job for building HeapStats.  
-I've tested the job on [Minikube](https://github.com/kubernetes/minikube).
+I've tested the job on [Minikube](https://github.com/kubernetes/minikube) and [k3OS](https://k3os.io/).
 
 ## Configure environment variables
 
