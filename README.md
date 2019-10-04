@@ -9,7 +9,7 @@ The containers in this repository provides build infrastructure for HeapStats.
     * Download HeapStats source from specified URL and create Analyzer ZIP archives.
 * RPM bulid
     * `rpmbulid/*`
-    * Create RPMs for EL6 / EL7 / Fedora
+    * Create RPMs for EL6 / EL7 / EL8 /Fedora
 
 # Build containers
 
@@ -20,6 +20,8 @@ $ cd <repo>/rpmbuild/el6
 $ docker build . -t heapstats/build:centos6
 $ cd <repo>/rpmbuild/el7
 $ docker build . -t heapstats/build:centos7
+$ cd <repo>/rpmbuild/el8
+$ docker build . -t heapstats/build:centos8
 $ cd <repo>/rpmbuild/fedora
 $ docker build . -t heapstats/build:fedora
 ```
@@ -32,6 +34,7 @@ https://hub.docker.com/r/heapstats/builder/
 $ docker pull heapstats/bulider:prep
 $ docker pull heapstats/bulider:centos6
 $ docker pull heapstats/bulider:centos7
+$ docker pull heapstats/bulider:centos8
 $ docker pull heapstats/bulider:fedora
 ```
 
@@ -66,6 +69,7 @@ $ docker run -it --rm -v /path/to/outdir:/share -e BZ2_ARCHIVE=<Source archive U
 ```
 $ docker run -it --rm -v /path/to/outdir:/share -e RELEASE=<Release version> heapstats/builder:centos6
 $ docker run -it --rm -v /path/to/outdir:/share -e RELEASE=<Release version> heapstats/builder:centos7
+$ docker run -it --rm -v /path/to/outdir:/share -e RELEASE=<Release version> heapstats/builder:centos8
 $ docker run -it --rm -v /path/to/outdir:/share -e RELEASE=<Release version> heapstats/builder:fedora
 ```
 
@@ -77,59 +81,69 @@ You can get binaries from `/path/to/outdir`.
 
 ```
 .
-└── heapstats-2.0.5
-     ├── bin
-     │   ├── agent
-     │   │   ├── heapstats-2.0.5-0.el6.x86_64.rpm
-     │   │   ├── heapstats-2.0.5-0.el7.centos.x86_64.rpm
-     │   │   ├── heapstats-2.0.5-0.fc27.x86_64.rpm
-     │   │   ├── heapstats-debuginfo-2.0.5-0.el6.x86_64.rpm
-     │   │   ├── heapstats-debuginfo-2.0.5-0.el7.centos.x86_64.rpm
-     │   │   ├── heapstats-debuginfo-2.0.5-0.fc27.x86_64.rpm
-     │   │   └── heapstats-debugsource-2.0.5-0.fc27.x86_64.rpm
-     │   └── analyzer
-     │       ├── heapstats-analyzer-2.0.5-0.fc27.noarch.rpm
-     │       ├── heapstats-analyzer-2.0.5-bin.zip
-     │       ├── heapstats-cli-2.0.5-0.el6.noarch.rpm
-     │       ├── heapstats-cli-2.0.5-0.el7.centos.noarch.rpm
-     │       ├── heapstats-cli-2.0.5-0.fc27.noarch.rpm
-     │       └── heapstats-cli-2.0.5-bin.zip
-     └── src
-         ├── heapstats-2.0.5-0.el6.src.rpm
-         ├── heapstats-2.0.5-0.el7.centos.src.rpm
-         ├── heapstats-2.0.5-0.fc27.src.rpm
-         └── heapstats-2.0.5.tar.gz
+└ heapstats-2.0.6
+    ├ bin
+    │   ├ agent
+    │   │   ├ heapstats-2.0.6-0.el6.x86_64.rpm
+    │   │   ├ heapstats-2.0.6-0.el7.centos.x86_64.rpm
+    │   │   ├ heapstats-2.0.6-0.el8.x86_64.rpm
+    │   │   ├ heapstats-2.0.6-0.fc27.x86_64.rpm
+    │   │   ├ heapstats-debuginfo-2.0.6-0.el6.x86_64.rpm
+    │   │   ├ heapstats-debuginfo-2.0.6-0.el7.centos.x86_64.rpm
+    │   │   ├ heapstats-debuginfo-2.0.6-0.el8.x86_64.rpm
+    │   │   ├ heapstats-debuginfo-2.0.6-0.fc27.x86_64.rpm
+    │   │   ├ heapstats-debugsource-2.0.6-0.el8.x86_64.rpm
+    │   │   └ heapstats-debugsource-2.0.6-0.fc27.x86_64.rpm
+    │   └ analyzer
+    │       ├ heapstats-analyzer-2.0.6-0.fc27.noarch.rpm
+    │       ├ heapstats-analyzer-2.0.6-bin.zip
+    │       ├ heapstats-cli-2.0.6-0.el6.noarch.rpm
+    │       ├ heapstats-cli-2.0.6-0.el7.centos.noarch.rpm
+    │       ├ heapstats-cli-2.0.6-0.el8.noarch.rpm
+    │       ├ heapstats-cli-2.0.6-0.fc27.noarch.rpm
+    │       └ heapstats-cli-2.0.6-bin.zip
+    └ src
+        ├ heapstats-2.0.6-0.el6.src.rpm
+        ├ heapstats-2.0.6-0.el7.centos.src.rpm
+        ├ heapstats-2.0.6-0.el8.src.rpm
+        ├ heapstats-2.0.6-0.fc27.src.rpm
+        └ heapstats-2.0.6.tar.gz
 ```
 
 ## HeapStats 2.1
 
 ```
 .
-└── heapstats-2.1.0
-    ├── api
-    │   ├── heapstats-core-2.1-SNAPSHOT.jar
-    │   └── heapstats-plugin-api-2.1-SNAPSHOT.jar
-    ├── bin
-    │   ├── agent
-    │   │   ├── heapstats-2.1.0-0.el6.x86_64.rpm
-    │   │   ├── heapstats-2.1.0-0.el7.centos.x86_64.rpm
-    │   │   ├── heapstats-2.1.0-0.fc27.x86_64.rpm
-    │   │   ├── heapstats-debuginfo-2.1.0-0.el6.x86_64.rpm
-    │   │   ├── heapstats-debuginfo-2.1.0-0.el7.centos.x86_64.rpm
-    │   │   ├── heapstats-debuginfo-2.1.0-0.fc27.x86_64.rpm
-    │   │   └── heapstats-debugsource-2.1.0-0.fc27.x86_64.rpm
-    │   └── analyzer
-    │       ├── heapstats-analyzer-2.1-SNAPSHOT-bin.zip
-    │       ├── heapstats-analyzer-2.1.0-0.fc27.noarch.rpm
-    │       ├── heapstats-cli-2.1-SNAPSHOT-bin.zip
-    │       ├── heapstats-cli-2.1.0-0.el6.noarch.rpm
-    │       ├── heapstats-cli-2.1.0-0.el7.centos.noarch.rpm
-    │       └── heapstats-cli-2.1.0-0.fc27.noarch.rpm
-    └── src
-        ├── heapstats-2.1.0-0.el6.src.rpm
-        ├── heapstats-2.1.0-0.el7.centos.src.rpm
-        ├── heapstats-2.1.0-0.fc27.src.rpm
-        └── heapstats-2.1.0.tar.gz
+└ heapstats-2.1.0
+    ├ api
+    │   ├ heapstats-core-2.1.0.jar
+    │   └ heapstats-plugin-api-2.1.0.jar
+    ├ bin
+    │   ├ agent
+    │   │   ├ heapstats-2.1.0-0.el6.x86_64.rpm
+    │   │   ├ heapstats-2.1.0-0.el7.centos.x86_64.rpm
+    │   │   ├ heapstats-2.1.0-0.el8.x86_64.rpm
+    │   │   ├ heapstats-2.1.0-0.fc27.x86_64.rpm
+    │   │   ├ heapstats-debuginfo-2.1.0-0.el6.x86_64.rpm
+    │   │   ├ heapstats-debuginfo-2.1.0-0.el7.centos.x86_64.rpm
+    │   │   ├ heapstats-debuginfo-2.1.0-0.el8.x86_64.rpm
+    │   │   ├ heapstats-debuginfo-2.1.0-0.fc27.x86_64.rpm
+    │   │   ├ heapstats-debugsource-2.1.0-0.el8.x86_64.rpm
+    │   │   └ heapstats-debugsource-2.1.0-0.fc27.x86_64.rpm
+    │   └ analyzer
+    │       ├ heapstats-analyzer-2.1.0-0.fc27.noarch.rpm
+    │       ├ heapstats-analyzer-2.1.0-bin.zip
+    │       ├ heapstats-cli-2.1.0-0.el6.noarch.rpm
+    │       ├ heapstats-cli-2.1.0-0.el7.centos.noarch.rpm
+    │       ├ heapstats-cli-2.1.0-0.el8.noarch.rpm
+    │       ├ heapstats-cli-2.1.0-0.fc27.noarch.rpm
+    │       └ heapstats-cli-2.1.0-bin.zip
+    └ src
+        ├ heapstats-2.1.0-0.el6.src.rpm
+        ├ heapstats-2.1.0-0.el7.centos.src.rpm
+        ├ heapstats-2.1.0-0.el8.src.rpm
+        ├ heapstats-2.1.0-0.fc27.src.rpm
+        └ heapstats-2.1.0.tar.gz
 ```
 
 # Experimental build environment
