@@ -1,0 +1,7 @@
+FROM maven:3.6-jdk-13
+LABEL maintainer "Yasumasa Suenaga <yasuenag@gmail.com>"
+
+RUN  yum update -y && yum install -y wget bzip2
+ADD build.sh .
+
+ENTRYPOINT ["./build.sh"]

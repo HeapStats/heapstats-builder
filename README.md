@@ -15,7 +15,8 @@ The containers in this repository provides build infrastructure for HeapStats.
 
 ```
 $ cd <repo>/preparation
-$ docker build . -t heapstats/builder:prep
+$ docker build . -t heapstats/builder:prep-2.1 -f Dockerfile-2.1
+$ docker build . -t heapstats/builder:prep-2.2 -f Dockerfile-2.2
 $ cd <repo>/rpmbuild/el6
 $ docker build . -t heapstats/builder:centos6
 $ cd <repo>/rpmbuild/el7
@@ -31,7 +32,8 @@ $ docker build . -t heapstats/builder:fedora
 https://hub.docker.com/r/heapstats/builder/
 
 ```
-$ docker pull heapstats/bulider:prep
+$ docker pull heapstats/bulider:prep-2.1
+$ docker pull heapstats/bulider:prep-2.2
 $ docker pull heapstats/bulider:centos6
 $ docker pull heapstats/bulider:centos7
 $ docker pull heapstats/bulider:centos8
@@ -46,8 +48,10 @@ You have to set some environment variables:
     * Release version (e.g. 2.1.0)
 * `BZ2_ARCHIVE`
     * Source archive on [IcedTea Mercurial repository](http://icedtea.wildebeest.org/hg/). You can get it from `bz2` link on left menu bar on this site.
-    * This value is only needed in `heapstats/builder:prep` container.
-    * If you do not set this value, `heapstats/builder:prep` container will download BZ2 release archive from [IcedTea release repository](http://icedtea.wildebeest.org/hg/release/)
+    * This value is only needed in `heapstats/builder:prep-*` container.
+    * If you do not set this value, `heapstats/builder:prep-*` container will download BZ2 release archive from [IcedTea release repository](http://icedtea.wildebeest.org/hg/release/)
+
+**NOTE: `heapstats/builder:prep-2.1` is for HeapStats 2.1 or earlier. If you wanto to compile HeapStats 2.2 or later including trunk repo, you need to use `heapstats/builder:prep-2.2`.**
 
 If you run them under proxy, you also need to set `http_proxy` and `https_proxy`.
 

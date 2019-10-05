@@ -7,8 +7,7 @@ if [ -z "$BZ2_ARCHIVE" ]; then
   BZ2_ARCHIVE=https://icedtea.classpath.org/hg/release/heapstats-$MAJOR/archive/$RELEASE.tar.bz2
 fi
 
-curl -LO $BZ2_ARCHIVE
-tar xvf *.bz2
+wget -q -O - $BZ2_ARCHIVE | tar jx
 mv -f heapstats* heapstats-$MAJOR
 tar cvfz $RELEASE_DIR.tar.gz heapstats-$MAJOR
 
@@ -39,8 +38,7 @@ cp $RELEASE_DIR.tar.gz $OUTDIR/src
 
 # Make Analyzer ZIP binary
 cd heapstats-$MAJOR
-./configure
-make analyzer
+mvn package
 
 # Deploy Analyzer ZIP binary
 cp analyzer/fx/target/heapstats-analyzer-*.zip $OUTDIR/bin/analyzer/
