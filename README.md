@@ -15,15 +15,15 @@ The containers in this repository provides build infrastructure for HeapStats.
 
 ```
 $ cd <repo>/preparation
-$ docker build . -t heapstats/build:prep
+$ docker build . -t heapstats/builder:prep
 $ cd <repo>/rpmbuild/el6
-$ docker build . -t heapstats/build:centos6
+$ docker build . -t heapstats/builder:centos6
 $ cd <repo>/rpmbuild/el7
-$ docker build . -t heapstats/build:centos7
+$ docker build . -t heapstats/builder:centos7
 $ cd <repo>/rpmbuild/el8
-$ docker build . -t heapstats/build:centos8
+$ docker build . -t heapstats/builder:centos8
 $ cd <repo>/rpmbuild/fedora
-$ docker build . -t heapstats/build:fedora
+$ docker build . -t heapstats/builder:fedora
 ```
 
 # Pull from Docker Hub
