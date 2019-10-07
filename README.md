@@ -4,8 +4,9 @@
 
 The containers in this repository provides build infrastructure for HeapStats.
 
-* Preparation
-    * `prep/`
+
+* Generate archives
+    * `archives/`
     * Download HeapStats source from specified URL and create Analyzer ZIP archives.
 * RPM bulid
     * `rpmbulid/*`
@@ -13,10 +14,23 @@ The containers in this repository provides build infrastructure for HeapStats.
 
 # Build containers
 
+## Download source archive and build analyzers
+
+### for HeapStats 2.1 or earlier
+
 ```
-$ cd <repo>/preparation
-$ docker build . -t heapstats/builder:prep-2.1 -f Dockerfile-2.1
-$ docker build . -t heapstats/builder:prep-2.2 -f Dockerfile-2.2
+$ docker build -t heapstats/builder:archives-2.1 -f archives/Dockerfile-2.1 .
+```
+
+### for HeapStats 2.2 or later (includes trunk repo)
+
+```
+$ docker build -t heapstats/builder:archives-2.2 -f archives/Dockerfile-2.2 .
+```
+
+## `rpmbuild` for each OSes
+
+```
 $ cd <repo>/rpmbuild/el6
 $ docker build . -t heapstats/builder:centos6
 $ cd <repo>/rpmbuild/el7
@@ -32,8 +46,8 @@ $ docker build . -t heapstats/builder:fedora
 https://hub.docker.com/r/heapstats/builder/
 
 ```
-$ docker pull heapstats/bulider:prep-2.1
-$ docker pull heapstats/bulider:prep-2.2
+$ docker pull heapstats/bulider:archives-2.1
+$ docker pull heapstats/bulider:archives-2.2
 $ docker pull heapstats/bulider:centos6
 $ docker pull heapstats/bulider:centos7
 $ docker pull heapstats/bulider:centos8
@@ -55,26 +69,17 @@ You have to set some environment variables:
 
 If you run them under proxy, you also need to set `http_proxy` and `https_proxy`.
 
-## Run prep container
+## Run containers
 
 ### Release version only
 
 ```
-$ docker run -it --rm -v /path/to/outdir:/share -e RELEASE=<Release version> heapstats/builder:prep
+$ docker run -it --rm -v /path/to/outdir:/share -e RELEASE=<Release version> heapstats/builder:<tag>
 ```
 
 ### With `BZ2_ARCHIVE`
 ```
-$ docker run -it --rm -v /path/to/outdir:/share -e BZ2_ARCHIVE=<Source archive URL> -e RELEASE=<Release version> heapstats/builder:prep
-```
-
-## Run rpmbuild for each OSes
-
-```
-$ docker run -it --rm -v /path/to/outdir:/share -e RELEASE=<Release version> heapstats/builder:centos6
-$ docker run -it --rm -v /path/to/outdir:/share -e RELEASE=<Release version> heapstats/builder:centos7
-$ docker run -it --rm -v /path/to/outdir:/share -e RELEASE=<Release version> heapstats/builder:centos8
-$ docker run -it --rm -v /path/to/outdir:/share -e RELEASE=<Release version> heapstats/builder:fedora
+$ docker run -it --rm -v /path/to/outdir:/share -e BZ2_ARCHIVE=<Source archive URL> -e RELEASE=<Release version> heapstats/builder:<tag>
 ```
 
 You can get binaries from `/path/to/outdir`.

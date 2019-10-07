@@ -1,16 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 
-MAJOR=`echo $RELEASE | sed -e 's/^\([0-9]\+\.[0-9]\+\)\.[0-9]\+$/\1/'`
-RELEASE_DIR=heapstats-$RELEASE
-
-if [ -z "$BZ2_ARCHIVE" ]; then
-  BZ2_ARCHIVE=https://icedtea.classpath.org/hg/release/heapstats-$MAJOR/archive/$RELEASE.tar.bz2
-fi
-
-wget -q -O - $BZ2_ARCHIVE | tar jx
-mv -f heapstats* heapstats-$MAJOR
-tar cvfz $RELEASE_DIR.tar.gz heapstats-$MAJOR
-
+# Setup
+source setup.sh
 
 # Proxy setting
 REGEX_PATTERN="^.\+://\(.\+\)\(:\([0-9]\+\)\)/\?$"
@@ -30,8 +21,8 @@ if [ -n "$https_proxy" ]; then
 fi
 
 # Make output directory
-OUTDIR=/share/$RELEASE_DIR
-mkdir -p $OUTDIR/bin/agent $OUTDIR/bin/analyzer $OUTDIR/src
+[ ! -d $OUTDIR/bin/analyzer ] && mkdir -p $OUTDIR/bin/analyzer
+[ ! -d $OUTDIR/src ] && mkdir -p $OUTDIR/src
 
 # Deploy source archive
 cp $RELEASE_DIR.tar.gz $OUTDIR/src
@@ -46,8 +37,7 @@ cp analyzer/cli/target/heapstats-cli-*.zip $OUTDIR/bin/analyzer/
 
 # Deploy Analyzer API
 if [ -d analyzer/plugin-api ]; then
-  mkdir $OUTDIR/api
+  [ ! -d $OUTDIR/api ] && mkdir -p $OUTDIR/api
   cp analyzer/core/target/heapstats-core-*.jar $OUTDIR/api/
   cp analyzer/plugin-api/target/heapstats-plugin-api-*.jar $OUTDIR/api/
 fi
-
