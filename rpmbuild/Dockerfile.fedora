@@ -6,9 +6,9 @@ RUN dnf upgrade -y \
                     java-1.8.0-openjdk-openjfx \
                     java-1.8.0-openjdk-openjfx-devel openjfx-devel maven ant \
                     binutils-devel tbb-devel autoconf automake rpm-build \
-                    net-snmp-devel pcre-devel make
+                    net-snmp-devel pcre-devel make wget \
+  && dnf clean all
 
-ADD build.sh .
+COPY common/* ./
 
-ENTRYPOINT ["./build.sh"]
-
+CMD ["./rpmbuild.sh"]
