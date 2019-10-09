@@ -1,11 +1,11 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: heapstats-pv-claim
+  name: heapstats-pv-claim-maven
 spec:
-  storageClassName: heapstats
+  storageClassName: heapstats-maven
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 20Mi
+      storage: 100Mi

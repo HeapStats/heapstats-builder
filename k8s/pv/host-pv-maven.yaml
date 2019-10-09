@@ -1,14 +1,14 @@
 kind: PersistentVolume
 apiVersion: v1
 metadata:
-  name: host-pv
+  name: host-pv-maven
   labels:
     type: local
 spec:
-  storageClassName: heapstats
+  storageClassName: heapstats-maven
   capacity:
-    storage: 100Mi
+    storage: 200Mi
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/tmp/share"
+    path: "/tmp/maven-repo"

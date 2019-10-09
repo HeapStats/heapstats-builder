@@ -1,0 +1,68 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: heapstats-release-builder-2.1
+spec:
+  template:
+    metadata:
+      name: heapstats-builder-template
+    spec:
+      restartPolicy: Never
+      volumes:
+      - name: share
+        persistentVolumeClaim:
+          claimName: heapstats-pv-claim
+      - name: maven
+        persistentVolumeClaim:
+          claimName: heapstats-pv-claim-maven
+      containers:
+      - name: archives
+        image: heapstats/builder:archives-2.1
+        envFrom:
+        - configMapRef:
+            name: heapstats-builder-env
+        volumeMounts:
+        - name: share
+          mountPath: /share
+        - name: maven
+          mountPath: /root/.m2
+      - name: fedora
+        image: heapstats/builder:fedora
+        envFrom:
+        - configMapRef:
+            name: heapstats-builder-env
+        volumeMounts:
+        - name: share
+          mountPath: /share
+        - name: maven
+          mountPath: /root/.m2
+      - name: centos8
+        image: heapstats/builder:centos8
+        envFrom:
+        - configMapRef:
+            name: heapstats-builder-env
+        volumeMounts:
+        - name: share
+          mountPath: /share
+        - name: maven
+          mountPath: /root/.m2
+      - name: centos7
+        image: heapstats/builder:centos7
+        envFrom:
+        - configMapRef:
+            name: heapstats-builder-env
+        volumeMounts:
+        - name: share
+          mountPath: /share
+        - name: maven
+          mountPath: /root/.m2
+      - name: centos6
+        image: heapstats/builder:centos6
+        envFrom:
+        - configMapRef:
+            name: heapstats-builder-env
+        volumeMounts:
+        - name: share
+          mountPath: /share
+        - name: maven
+          mountPath: /root/.m2
