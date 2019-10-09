@@ -1,9 +1,9 @@
-# HeapStats Builder
+HeapStats Builder
+===================
 
 **If you want to use Kubernetes as build bot, please see [here](https://github.com/HeapStats/heapstats-builder/blob/master/k8s)**
 
 The containers in this repository provides build infrastructure for HeapStats.
-
 
 * Generate archives
     * `archives/`
@@ -60,7 +60,8 @@ You have to set some environment variables:
     * Source archive on [IcedTea Mercurial repository](http://icedtea.wildebeest.org/hg/). You can get it from `bz2` link on left menu bar on this site.
     * If you do not set this value, container will download BZ2 release archive from [IcedTea release repository](http://icedtea.wildebeest.org/hg/release/)
 
-**NOTE: `heapstats/builder:archives-2.1` is for HeapStats 2.1 or earlier. If you want to compile HeapStats 2.2 or later including trunk repo, you need to use `heapstats/builder:archives-2.2`.**
+**NOTE:**  
+`heapstats/builder:archives-2.1` is for HeapStats 2.1 or earlier. If you want to compile HeapStats 2.2 or later including trunk repo, you need to use `heapstats/builder:archives-2.2`.
 
 If you run them under proxy, you also need to set `http_proxy` and `https_proxy`.
 
@@ -78,6 +79,9 @@ $ docker run -it --rm -v /path/to/outdir:/share -e BZ2_ARCHIVE=<Source archive U
 ```
 
 You can get binaries from `/path/to/outdir`.
+
+**NOTE:**  
+You can share maven local repository between containers if you pass `-v /path/to/localrepo:/root/.m2` to `docker run`. See [Maven Official Docker Hub](https://hub.docker.com/_/maven) for more details.
 
 # Output files
 
