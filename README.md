@@ -162,12 +162,17 @@ You can share maven local repository between containers if you pass `-v /path/to
 * Run `raspbian-setup.sh`
     * Download and mount the latest Raspbian on current directory
     * Build HeapStats Agent for ARM32 from GitHub repo
-* YOU MUST INSTALL `qemu-user-static` on your host
+
+**NOTE:**
+* You must install packages on your host as below:
+    * `qemu-img`
+    * `qemu-user-static`
+    * `systemd-container`
+* You need to run `raspbian-setup.sh` as root because it would mount filesystem in Raspbian image.
 
 ## Ubuntu
 
 * [experimental/ubuntu](experimental/ubuntu)
-* Run `docker build . -t heapstats-builder:ubuntu` to build image
-* Run `docker run -it --rm heapstats-builder:ubuntu` to build HeapStats
+* Run `docker build -t heapstats/builder:ubuntu -f experimental/ubuntu/Dockerfile .` to build image
+* Run `docker run -it --rm heapstats/builder:ubuntu` to build HeapStats
     * Build HeapStats Agent and Analyzer for AMD64 from GitHub repo
-
