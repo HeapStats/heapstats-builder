@@ -80,8 +80,11 @@ $ docker run -it --rm -v /path/to/outdir:/share -e BZ2_ARCHIVE=<Source archive U
 
 You can get binaries from `/path/to/outdir`.
 
-**NOTE:**  
+**NOTE 1:**  
 You can share maven local repository between containers if you pass `-v /path/to/localrepo:/root/.m2` to `docker run`. See [Maven Official Docker Hub](https://hub.docker.com/_/maven) for more details.
+
+**NOTE 2:**  
+If `/path/to/outdir/src/$RELEASE.tar.gz` exists, it would be used for build, would not download the source.
 
 # Output files
 
