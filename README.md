@@ -192,7 +192,7 @@ heapstats-2.2.trunk/
 * [experimental/raspbian](experimental/raspbian)
 * Run `raspbian-setup.sh`
     * Download and mount the latest Raspbian on current directory
-    * Build HeapStats Agent for ARM32 from GitHub repo
+    * Build HeapStats Agent for ARM32 from IcedTea repo
 
 **NOTE:**
 * You must install packages on your host as below:
@@ -200,10 +200,13 @@ heapstats-2.2.trunk/
     * `qemu-user-static`
     * `systemd-container`
 * You need to run `raspbian-setup.sh` as root because it would mount filesystem in Raspbian image.
+* If you want to build specified version, you can pass the version (2.0 or 2.1) to `raspbian-setup.sh`.
+* If you already mounted `rpi_sysroot`, you can skip the process with `--skip-mount`.
 
 ## Ubuntu
 
 * [experimental/ubuntu](experimental/ubuntu)
 * Run `docker build -t heapstats/builder:ubuntu -f experimental/ubuntu/Dockerfile .` to build image
 * Run `docker run -it --rm heapstats/builder:ubuntu` to build HeapStats
-    * Build HeapStats Agent and Analyzer for AMD64 from GitHub repo
+    * Build HeapStats Agent and Analyzer for AMD64 from IcedTea repo
+* If you want to build specified version, you can pass the version (2.0 or 2.1) via environment variable (e.g. `-e VER=2.0`).
