@@ -15,7 +15,7 @@ spec:
       - name: maven
         persistentVolumeClaim:
           claimName: heapstats-pv-claim-maven
-      containers:
+      initContainers:
       - name: archives
         image: heapstats/builder:archives-2.1
         envFrom:
@@ -26,6 +26,7 @@ spec:
           mountPath: /share
         - name: maven
           mountPath: /root/.m2
+      containers:
       - name: fedora
         image: heapstats/builder:fedora
         envFrom:
