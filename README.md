@@ -84,7 +84,7 @@ You can get binaries from `/path/to/outdir`.
 You can share maven local repository between containers if you pass `-v /path/to/localrepo:/root/.m2` to `docker run`. See [Maven Official Docker Hub](https://hub.docker.com/_/maven) for more details.
 
 **NOTE 2:**  
-If `/path/to/outdir/src/$RELEASE.tar.gz` exists, it would be used for build, would not download the source.
+If `/path/to/outdir/$RELEASE/src/$RELEASE.tar.gz` exists, it would be used for build, would not download the source.
 
 # Output files
 
