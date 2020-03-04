@@ -33,7 +33,10 @@ if [ $VER = "2.0" ] || [ "$VER" = "2.1" ]; then
     hg clone http://icedtea.classpath.org/hg/release/heapstats-$VER $SYSROOT/root/heapstats-$VER
   fi
 else
-  if [ ! -d $SYSROOT/root/heapstats ]; then
+  if [ -n "$LOCAL_GZ_ARCHIVE" ]; then
+    tar xvfz $LOCAL_GZ_ARCHIVE -C $SYSROOT/root/
+    mv $SYSROOT/root/heapstats* $SYSROOT/root/heapstats
+  elif [ ! -d $SYSROOT/root/heapstats ]; then
     hg clone http://icedtea.classpath.org/hg/heapstats $SYSROOT/root/heapstats
   fi
 fi

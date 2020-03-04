@@ -201,6 +201,7 @@ heapstats-2.2.trunk/
     * `systemd-container`
 * You need to run `raspbian-setup.sh` as root because it would mount filesystem in Raspbian image.
 * If you want to build specified version, you can pass the version (2.0 or 2.1) to `raspbian-setup.sh`.
+* If you want to build withspecified gz archive, you need to point the location of archive to `$LOCAL_GZ_ARCHIVE`.
 * If you already mounted `rpi_sysroot`, you can skip the process with `--skip-mount`.
 
 ## Ubuntu
@@ -210,3 +211,4 @@ heapstats-2.2.trunk/
 * Run `docker run -it --rm heapstats/builder:ubuntu` to build HeapStats
     * Build HeapStats Agent and Analyzer for AMD64 from IcedTea repo
 * If you want to build specified version, you can pass the version (2.0 or 2.1) via environment variable (e.g. `-e VER=2.0`).
+* If you want to build with specified gz archive, you need to pass the location of the archive and its name (e.g. `-v /path/to/dir:/archive -e LOCAL_GZ_ARCHIVE=<archive name>.tar.gz`.

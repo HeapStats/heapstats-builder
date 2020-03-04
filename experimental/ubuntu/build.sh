@@ -3,19 +3,20 @@
 # Proxy setting
 source maven-proxy.sh
 
-
-if [ "$VER" != "2.0" ] && [ "$VER" != "2.1" ]; then
-  VER=trunk
-fi
-
-
-# Clone from HeapStats repo
-if [ "$VER" = trunk ]; then
-  hg clone http://icedtea.classpath.org/hg/heapstats
+if [ -n "$LOCAL_GZ_ARCHIVE" ]; then
+  tar xvfz archive/$LOCAL_GZ_ARCHIVE
 else
-  hg clone http://icedtea.classpath.org/hg/release/heapstats-$VER
-fi
+  if [ "$VER" != "2.0" ] && [ "$VER" != "2.1" ]; then
+    VER=trunk
+  fi
 
+  # Clone from HeapStats repo
+  if [ "$VER" = trunk ]; then
+    hg clone http://icedtea.classpath.org/hg/heapstats
+  else
+    hg clone http://icedtea.classpath.org/hg/release/heapstats-$VER
+  fi
+fi
 
 # Make HeapStats
 cd heapstats*
